@@ -2,21 +2,21 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [item, setItem] = useState("");
+  const [inputText, setInputText] = useState("");
   const [list, setList] = useState([])
 
   function handleChange (event) {
-    const newItem = event.target.value
-    setItem(newItem);
+    const newValue = event.target.value
+    setInputText(newValue);
     
   }
 
   function addList (event) {
-    const newItem = item
     setList((prevValue) => {
       console.log(prevValue)
-      return [... prevValue, newItem]
+      return [... prevValue, inputText]
     })
+    setInputText("");
   }
 
 
@@ -28,7 +28,7 @@ function App() {
       </div>
 
       <div className="form">
-        <input type="text" onChange={handleChange} />
+        <input type="text" onChange={handleChange} value={inputText} />
         <button onClick={addList}>
           <span>Add</span>
         </button>
@@ -39,9 +39,6 @@ function App() {
          {list.map((value, index)=> (
           <li key={index}> {value} </li>
          ))}
-            
-         
-          
         </ul>
       </div>
     </div>
