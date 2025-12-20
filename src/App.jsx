@@ -16,10 +16,15 @@ function App() {
 
   function addList (event) {
     setList((prevValue) => {
-      console.log(prevValue)
       return [... prevValue, inputText]
     })
     setInputText("");
+  }
+
+  function deleteItem (id) {
+    setList((prevValue) => 
+      prevValue.filter((value,index) => id !== index )
+    )
   }
 
 
@@ -43,7 +48,8 @@ function App() {
           <ToDoItem 
             text={value}
             id={index}
-            key={index}          
+            key={index} 
+            toCheck={deleteItem}         
           />
 
 
